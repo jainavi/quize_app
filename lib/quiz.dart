@@ -4,6 +4,7 @@ import 'package:quize_app/data/questions.dart';
 import 'package:quize_app/start_screen.dart';
 import 'package:quize_app/questions_screen.dart';
 import 'package:quize_app/data/questions.dart';
+import 'package:quize_app/result_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -29,8 +30,8 @@ class _QuizState extends State<Quiz> {
 
     if (selectedAnswer.length == questions.length) {
       setState(() {
-        activeScreen = 'start-screen';
-        selectedAnswer = [];
+        activeScreen = 'result-screen';
+        // selectedAnswer = [];
       });
     }
   }
@@ -52,7 +53,9 @@ class _QuizState extends State<Quiz> {
           ),
           child: activeScreen == 'start-screen'
               ? StartScreen(switchScreen)
-              : QuestionsScreen(chooseAnswer),
+              : activeScreen == 'result-screen'
+                  ? ResultScreen(selectedAnswer)
+                  : QuestionsScreen(chooseAnswer),
         ),
       ),
     );
